@@ -13,6 +13,7 @@ func (s service) Init() error {
 
 	var err error
 	err = rpio.Open()
+	initpin()
 	return err
 }
 

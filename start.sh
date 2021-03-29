@@ -1,7 +1,7 @@
 #!/bin/bash
 sshuser=pi
 sshpwd=yahboom
-host=192.168.0.106
+host=192.168.0.107
 
 # /usr/bin/expect -c "
 # spawn /usr/bin/scp ./bin/fakeeyes_car pi@${host}:/tmp/
@@ -9,9 +9,8 @@ host=192.168.0.106
 # send \"yahboom\n\"    #将密码发送给该指令
 # expect eof
 # "
-scp ./bin/fakeeyes_car ${sshuser}@${host}:/tmp/  << EOF
+scp ./bin/fakeeyes_car_arm ${sshuser}@${host}:/tmp/  << EOF
 ${sshpwd}
 EOF
 echo "copy to car "
 echo  "run cmd "
-

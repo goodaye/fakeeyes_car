@@ -1,13 +1,21 @@
 GOCC = go
-TARGET = bin/fakeeyes_car
-M_SRC = main.go
+TARGET_X86 = bin/fakeeyes_car_x86
+TARGET_ARM = bin/fakeeyes_car_arm
+M_SRC = ./*.go
 
-all : ${TARGET}
+all : ${TARGET_ARM} ${TARGET_X86}
 
 
-${TARGET} : ${M_SRC}
-	@echo "build fakeeyes_car"
-	GOARCH=arm GOARM=5 ${GOCC} build -o ${TARGET} $^
+${TARGET_ARM} : ${M_SRC}
+	# /bin/rm ${TARGET}
+	@echo "build fakeeyes_car_arm"
+	GOARCH=arm GOARM=5 ${GOCC} build -o ${TARGET_ARM} $^
+${TARGET_X86} : ${M_SRC}
+	# /bin/rm ${TARGET}
+	@echo "build fakeeyes_car_x86"
+	${GOCC} build -o ${TARGET_X86} $^
+	# ${GOCC} build -o ${TARGET} ${M_SRC}
 
 clean:
-	/bin/rm -rf ${TARGET}
+	/bin/rm -rf ${TARGET_ARM}
+	/bin/rm -rf ${TARGET_X86}
