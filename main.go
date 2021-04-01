@@ -12,11 +12,27 @@ import (
 
 func main() {
 	var err error
-	fmt.Println("abc")
+	fmt.Println("start car ")
 	err = wire.Init()
 	if err != nil {
 		fmt.Println(err.Error())
 		panic(err)
 	}
-	controller.BeepTimes(3, 1*time.Second)
+	// beep
+	// controller.BeepTimes(1, 1*time.Second)
+	// led
+	fmt.Println("led car ")
+	controller.Led(1, 0, 0)
+	time.Sleep(1 * time.Second)
+	controller.Led(0, 1, 0)
+	time.Sleep(5 * time.Second)
+	//
+	// controller.MotorLeft()
+	time.Sleep(2 * time.Second)
+	fmt.Println("stop car ")
+	err = wire.Stop()
+	if err != nil {
+		fmt.Println(err.Error())
+		panic(err)
+	}
 }

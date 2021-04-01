@@ -32,7 +32,7 @@ import "time"
 
 // Beep bee time
 func Beep(d time.Duration) {
-	pinbuzzer.Low()
+	PinBuzzer.Low()
 	time.Sleep(d)
-	pinbuzzer.High()
+	PinBuzzer.High()
 }

@@ -5,11 +5,12 @@ M_SRC = ./*.go
 
 all : ${TARGET_ARM} ${TARGET_X86}
 
-
+.PHONY : ${TARGET_ARM}
 ${TARGET_ARM} : ${M_SRC}
 	# /bin/rm ${TARGET}
 	@echo "build fakeeyes_car_arm"
 	GOARCH=arm GOARM=5 ${GOCC} build -o ${TARGET_ARM} $^
+.PHONY : ${TARGET_X86}
 ${TARGET_X86} : ${M_SRC}
 	# /bin/rm ${TARGET}
 	@echo "build fakeeyes_car_x86"

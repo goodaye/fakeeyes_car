@@ -19,3 +19,15 @@ func BeepTimes(c int, d time.Duration) {
 		time.Sleep(d)
 	}
 }
+
+func MotorLeft() {
+	clutch.MotorLeft()
+}
+
+func MotorRun() {
+
+}
+
+func Led(R uint, G uint, B uint) {
+	clutch.Led(R, G, B)
+}
