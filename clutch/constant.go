@@ -36,13 +36,19 @@ var (
 	//定义引脚
 	/*蜂鸣器引脚设置*/
 	//设置控制蜂鸣器引脚为wiringPi编码10口
-	PinCodeBuzzer        = 8
+	PinCodeBuzzer = 8
+	// Motor left
 	PinCodeLeftmotorgo   = 20
 	PinCodeLeftmotorback = 21
 	PinCodeLeftmotorpwm  = 16
-	PinCodeLedR          = 22
-	PinCodeLedG          = 27
-	PinCodeLedB          = 24
+	// Motor Right
+	PinCodeRightmotorgo   = 19
+	PinCodeRightmotorback = 26
+	PinCodeRightmotorpwm  = 13
+	// LED
+	PinCodeLedR = 22
+	PinCodeLedG = 27
+	PinCodeLedB = 24
 	//左电机前进AIN2连接Raspberry的wiringPi编码28口
 	// Left_motor_go int = 28
 	//左电机后退AIN1连接Raspberry的wiringPi编码29口
@@ -60,13 +66,21 @@ var (
 )
 var (
 	// PinBuzzer beep
-	PinBuzzer        rpio.Pin
-	PinLeftmotorgo   rpio.Pin
-	PinLeftmotorback rpio.Pin
-	PinLeftmotorpwm  rpio.Pin
-	PinLedR          rpio.Pin
-	PinLedG          rpio.Pin
-	PinLedB          rpio.Pin
+	PinBuzzer rpio.Pin
+	// Motor Left
+	PinLeftMotorgo   rpio.Pin
+	PinLeftMotorback rpio.Pin
+	PinLeftMotorpwm  rpio.Pin
+	// Motor Right
+	PinRightMotorgo   rpio.Pin
+	PinRightMotorback rpio.Pin
+	PinRightMotorpwm  rpio.Pin
+	PinLedR           rpio.Pin
+	PinLedG           rpio.Pin
+	PinLedB           rpio.Pin
+)
+var (
+	MotorFreqence = 64000
 )
 
 // pin := rpio.Pin(10)
@@ -86,19 +100,35 @@ func initpin() {
 	// Buzzer
 	PinBuzzer = rpio.Pin(PinCodeBuzzer)
 	PinBuzzer.Output()
-	// Motor
-	PinLeftmotorgo = rpio.Pin(PinCodeLeftmotorgo)
-	PinLeftmotorgo.Output()
-	PinLeftmotorback = rpio.Pin(PinCodeLeftmotorback)
-	PinLeftmotorback.Output()
-	PinLeftmotorpwm = rpio.Pin(PinCodeLeftmotorpwm)
-	PinLeftmotorpwm.Pwm()
-	PinLeftmotorpwm.Freq(64000)
+	// Motor Left
+	PinLeftMotorgo = rpio.Pin(PinCodeLeftmotorgo)
+	PinLeftMotorgo.Output()
+	PinLeftMotorback = rpio.Pin(PinCodeLeftmotorback)
+	PinLeftMotorback.Output()
+	PinLeftMotorpwm = rpio.Pin(PinCodeLeftmotorpwm)
+	PinLeftMotorpwm.Mode(rpio.Pwm)
+	PinLeftMotorpwm.Freq(MotorFreqence)
+	// MotorRight
+	PinRightMotorgo = rpio.Pin(PinCodeRightmotorgo)
+	PinRightMotorgo.Output()
+	PinRightMotorback = rpio.Pin(PinCodeRightmotorback)
+	PinRightMotorback.Output()
+	PinRightMotorpwm = rpio.Pin(PinCodeRightmotorpwm)
+	// PinRightMotorpwm.Pwm()
+	PinRightMotorpwm.Mode(rpio.Pwm)
+	PinRightMotorpwm.Freq(MotorFreqence)
+	// rpio.StartPwm()
+
 	// Led
 	PinLedR = rpio.Pin(PinCodeLedR)
 	PinLedR.Output()
 	PinLedG = rpio.Pin(PinCodeLedG)
 	PinLedG.Output()
+	// PinLedB = rpio.Pin(PinCodeLedB)
+	// PinLedB.Output()
 	PinLedB = rpio.Pin(PinCodeLedB)
-	PinLedB.Output()
+	PinLedB.Pwm()
+	PinLedB.Freq(MotorFreqence)
+	PinLedB.DutyCycle(0, 100)
+
 }

@@ -1,5 +1,10 @@
 package clutch
 
+import (
+	"fmt"
+	"time"
+)
+
 // Led light led
 func Led(R uint, G uint, B uint) {
 
@@ -15,9 +20,14 @@ func Led(R uint, G uint, B uint) {
 		PinLedG.High()
 	}
 
-	if B == 0 {
-		PinLedB.Low()
-	} else {
-		PinLedB.High()
+	// if B == 0 {
+	// 	PinLedB.Low()
+	// } else {
+	// 	PinLedB.High()
+	// }
+	for i := 1; i <= 100; i++ {
+		fmt.Println(i)
+		PinLedB.DutyCycle(uint32(i), 100)
+		time.Sleep(100 * time.Millisecond)
 	}
 }

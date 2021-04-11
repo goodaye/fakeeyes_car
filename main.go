@@ -22,13 +22,14 @@ func main() {
 	// controller.BeepTimes(1, 1*time.Second)
 	// led
 	fmt.Println("led car ")
-	controller.Led(1, 0, 0)
-	time.Sleep(1 * time.Second)
-	controller.Led(0, 1, 0)
+	controller.Led(1, 0, 1)
 	time.Sleep(5 * time.Second)
-	//
-	// controller.MotorLeft()
-	time.Sleep(2 * time.Second)
+	// controller.Led(0, 1, 0)
+	// time.Sleep(5 * time.Second)
+
+	fmt.Println("start run ")
+	controller.MotorRun()
+	time.Sleep(5 * time.Second)
 	fmt.Println("stop car ")
 	err = wire.Stop()
 	if err != nil {

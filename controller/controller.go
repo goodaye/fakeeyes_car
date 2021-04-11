@@ -15,17 +15,18 @@ func TurnLeft() {
 //BeepTimes beep times
 func BeepTimes(c int, d time.Duration) {
 	for i := 0; i < c; i++ {
-		clutch.Beep(d)
+		clutch.BeepOn()
 		time.Sleep(d)
+		clutch.BeepOff()
 	}
 }
 
 func MotorLeft() {
-	clutch.MotorLeft()
+
 }
 
 func MotorRun() {
-
+	clutch.MotorRun()
 }
 
 func Led(R uint, G uint, B uint) {

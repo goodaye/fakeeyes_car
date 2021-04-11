@@ -1,9 +1,9 @@
 package clutch
 
+import "time"
+
 /* beep
  */
-
-import "time"
 
 // /**
 // * Function       ModeBEEP
@@ -31,8 +31,18 @@ import "time"
 // }
 
 // Beep bee time
-func Beep(d time.Duration) {
+func Beep() {
 	PinBuzzer.Low()
-	time.Sleep(d)
+	time.Sleep(1 * time.Second)
+	PinBuzzer.High()
+}
+
+// Beep bee time
+func BeepOn() {
+	PinBuzzer.Low()
+}
+
+// Beep bee time
+func BeepOff() {
 	PinBuzzer.High()
 }
